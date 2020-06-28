@@ -1,27 +1,104 @@
 ul li {
     margin: 15px;
 }
-#cadastro {
-    background-color:rgb(172, 163, 169);
-    width: 400px;
-    height: 400px;
+#div_input {
+    width: 350px;
+    height: 130px;
     padding:30px;
     margin-top:50px;
-    position: absolute;
+    position: relative;
     left:50%;
     transform: translateX(-50%);
+    box-shadow: 1px 1px 1px palegreen;
+    border: 2px solid black;
+}
+label {
+    font-weight: 700;
+}
+button {
+    border-radius:3px;
+    background-color: plum;
     box-shadow: 1px 1px 1px black;
 }
-td {
- border: 2px solid black;
- 
+button:hover {
+    background-color: violet;
+}
+button:active {
+    box-shadow:none;
+    background-color:white  ;
 }
 
  input {
      position: relative;
      left: 30px;
      margin: 0px;
+     border-radius:5px;
     
  }
 
+ .alterar_dados {
+     margin:7px;
+     
+ }
+ #painel_de_alteracao {
+    background-color: burlywood;
+    border: 2px solid black;
+    width: 300px;
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    position: absolute;
+    left:50%;
+    top:60px;
+    transform:translateX(-50%);
+    display: none;
+    
+ }
+
+
+ /* tabelas */
+ #tabela {
+    position: absolute;
+    width: 700px;
+    height:auto;
+    margin:50px;
+    left:50%;
+    transform:translateX(-55%);
+    
+ }
  
+ table thead td {
+    border: 2px solid black;
+    padding: 3px 20px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:900;
+    background-color: navajowhite;
+      
+   }
+  table {
+    width: 400px;
+    height: auto;
+    position: relative;
+    left:50%;
+    transform:translateX(-50%);
+    border: 2px solid black;
+    border-collapse: collapse;    
+  }
+
+  td:hover {
+      background-color: lightslategray;
+  }
+
+  table tbody td {
+    border: 2px solid black;
+    padding: 2px 20px;
+    text-align: center;
+    
+  }
+  tr:nth-child(odd) {
+    background-color: rgb(161, 228, 222);
+  }
+  tr:nth-child(even){
+    background-color: rgb(196, 243, 158);
+  }

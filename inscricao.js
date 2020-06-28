@@ -1,6 +1,15 @@
 let botao = document.getElementById('botao')
 let tabela = document.getElementById('tabela_de_cadastro')
 let formulario = document.getElementById('inserir_dados')
+
+let painel_de_alteracao = document.getElementById('painel_de_alteracao')
+let nomeAlterar = document.getElementById('nome_alterar');
+let emailAlterar = document.getElementById('email_alterar');
+let idadeAlterar = document.getElementById('idade_alterar');
+let botao_alterar = document.getElementById('botao_alterar')
+
+botao_alterar.addEventListener('click', confirmar_alteracao)
+
 botao.addEventListener('click', guardar)
 
 window.onload = function(){
@@ -12,6 +21,8 @@ window.onload = function(){
 
 let cadastro = []
 var dados_dos_inputs 
+var guardar_id
+
 function guardar() {
     let nome = document.getElementById('nome').value
     let idade = document.getElementById('idade').value
@@ -33,6 +44,7 @@ function guardar_dados(tamanho_do_cadastro){
                             <td> ${dados_dos_inputs[tamanho_do_cadastro]['idadeCliente']}</td>
                             <td> ${dados_dos_inputs[tamanho_do_cadastro]['emailCliente']}</td>
                             <td><button class="excluir" type="button" onclick=excluir(${tamanho_do_cadastro})>Excluir</button></td>
+                            <td><button class="alterar" type="button" onclick=alterar(${tamanho_do_cadastro})>Alterar</button></td>
                          </tr>` 
                          
 }
@@ -44,6 +56,7 @@ function listar() {
                             <td> ${cadastro[i]['idadeCliente']}</td>                             
                             <td> ${cadastro[i]['emailCliente']}</td>
                             <td><button class="excluir" type="button" onclick=excluir(${i})>Excluir</button></td>
+                            <td><button class="alterar" type="button" onclick=alterar(${i})>Alterar</button></td>
                             </tr>`
 
     }
@@ -54,4 +67,29 @@ function excluir(id_do_elemento) {
     localStorage.setItem('dados',JSON.stringify(cadastro))
     tabela.innerHTML = ""
     listar()
+}
+
+function alterar(id_do_elemento) {
+    let alteracao = cadastro[id_do_elemento]
+    guardar_id  = id_do_elemento
+    nomeAlterar.value = alteracao.nomeCliente;
+    emailAlterar.value = alteracao.emailCliente;
+    idadeAlterar.value = alteracao.idadeCliente;
+    painel_de_alteracao.style.display = "block";
+    botao.style.display = "none";
+        
+
+}
+
+function confirmar_alteracao() {
+    cadastro[guardar_id].nomeCliente = nomeAlterar.value
+    cadastro[guardar_id].emailCliente = emailAlterar.value
+    cadastro[guardar_id].idadeCliente = idadeAlterar.value 
+
+    localStorage.setItem('dados',JSON.stringify(cadastro))
+    tabela.innerHTML = ""
+    painel_de_alteracao.style.display = "none";
+    botao.style.display = "block";
+    listar()
+
 }
