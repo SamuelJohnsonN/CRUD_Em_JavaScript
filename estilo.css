@@ -1,0 +1,27 @@
+ul li {
+    margin: 15px;
+}
+#cadastro {
+    background-color:rgb(172, 163, 169);
+    width: 400px;
+    height: 400px;
+    padding:30px;
+    margin-top:50px;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    box-shadow: 1px 1px 1px black;
+}
+td {
+ border: 2px solid black;
+ 
+}
+
+ input {
+     position: relative;
+     left: 30px;
+     margin: 0px;
+    
+ }
+
+ 
