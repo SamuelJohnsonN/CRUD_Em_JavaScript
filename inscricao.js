@@ -22,6 +22,7 @@ window.onload = function(){
 let cadastro = []
 var dados_dos_inputs 
 var guardar_id
+var exclusao = false
 
 function guardar() {
     let nome = document.getElementById('nome').value
@@ -63,6 +64,7 @@ function listar() {
 }
 
 function excluir(id_do_elemento) {
+    exclusao = true
     cadastro.splice(id_do_elemento,1)
     localStorage.setItem('dados',JSON.stringify(cadastro))
     tabela.innerHTML = ""
@@ -70,6 +72,7 @@ function excluir(id_do_elemento) {
 }
 
 function alterar(id_do_elemento) {
+    exclusao = false
     let alteracao = cadastro[id_do_elemento]
     guardar_id  = id_do_elemento
     nomeAlterar.value = alteracao.nomeCliente;
@@ -77,19 +80,33 @@ function alterar(id_do_elemento) {
     idadeAlterar.value = alteracao.idadeCliente;
     painel_de_alteracao.style.display = "block";
     botao.style.display = "none";
-        
+    
 
 }
-
+// Confirmo a alteração, caso um elemento seja excluído no meio da mudança ele não faz nada.
 function confirmar_alteracao() {
+    if (exclusao == false) {
     cadastro[guardar_id].nomeCliente = nomeAlterar.value
     cadastro[guardar_id].emailCliente = emailAlterar.value
     cadastro[guardar_id].idadeCliente = idadeAlterar.value 
-
     localStorage.setItem('dados',JSON.stringify(cadastro))
     tabela.innerHTML = ""
     painel_de_alteracao.style.display = "none";
     botao.style.display = "block";
     listar()
+    guardar_id = undefined
+    }else {
+        alert("Um elemento foi excluído no meio da alteração, nenhuma mudança feita")
+        exclusao = false
+        painel_de_alteracao.style.display = "none";
+        botao.style.display = "block";
+        tabela.innerHTML = ""
+        listar()
+    }
+}
 
+function fechar_tela() {
+    painel_de_alteracao.style.display = "none";
+    tabela.innerHTML = ""
+    listar()
 }

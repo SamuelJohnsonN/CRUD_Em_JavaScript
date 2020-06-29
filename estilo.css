@@ -54,7 +54,13 @@ button:active {
     display: none;
     
  }
-
+ #fechar {
+    border-radius: 50%;
+    position:relative;
+    left:74%;
+    bottom: 72%;
+    outline:none;
+}
 
  /* tabelas */
  #tabela {
